@@ -13,10 +13,10 @@ ki18n_wrap_ui(breezedecoration_config_SRCS
    ui/breezeexceptionlistwidget.ui
 )
 
-kcoreaddons_add_plugin(kcm_breezedecoration SOURCES kcm_breezedecoration.cpp ${breezedecoration_config_SRCS} INSTALL_NAMESPACE "${KDECORATION_KCM_PLUGIN_DIR}")
-kconfig_add_kcfg_files(kcm_breezedecoration ../breezesettings.kcfgc)
-target_include_directories(kcm_breezedecoration PRIVATE ${CMAKE_SOURCE_DIR}/kdecoration ${CMAKE_BINARY_DIR}/kdecoration/)
-target_link_libraries(kcm_breezedecoration
+kcoreaddons_add_plugin(kcm_beskin_decoration SOURCES kcm_breezedecoration.cpp ${breezedecoration_config_SRCS} INSTALL_NAMESPACE "${KDECORATION_KCM_PLUGIN_DIR}")
+kconfig_add_kcfg_files(kcm_beskin_decoration ../breezesettings.kcfgc)
+target_include_directories(kcm_beskin_decoration PRIVATE ${CMAKE_SOURCE_DIR}/kdecoration ${CMAKE_BINARY_DIR}/kdecoration/)
+target_link_libraries(kcm_beskin_decoration
     PUBLIC
         Qt6::Core
         Qt6::Gui
@@ -29,14 +29,12 @@ target_link_libraries(kcm_breezedecoration
         KF6::IconThemes
         KF6::KCMUtils
 )
-kcmutils_generate_desktop_file(kcm_breezedecoration)
-
 # kcmshell6 < 6.27.0 doesn't know the --smoke-test param, so skip this test for
 # now.
 # TODO: Drop this when KF6_MIN_VERSION >= 6.27.0
 if(KF6KCMUtils_VERSION VERSION_GREATER_EQUAL "6.27.0")
-    add_test(NAME kcm_breezedecoration_smoketest COMMAND kcmshell6 -style Breeze --smoke-test ${KDECORATION_KCM_PLUGIN_DIR}/kcm_breezedecoration)
-    set_tests_properties(kcm_breezedecoration_smoketest PROPERTIES
+    add_test(NAME kcm_beskin_decoration_smoketest COMMAND kcmshell6 -style Breeze --smoke-test ${KDECORATION_KCM_PLUGIN_DIR}/kcm_beskin_decoration)
+    set_tests_properties(kcm_beskin_decoration_smoketest PROPERTIES
         ENVIRONMENT_MODIFICATION QT_PLUGIN_PATH=path_list_prepend:${CMAKE_BINARY_DIR}/bin
     )
 endif()

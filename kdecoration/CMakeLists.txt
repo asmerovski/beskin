@@ -20,7 +20,7 @@ add_library(breezedecoration MODULE
     ${breezedecoration_config_PART_FORMS_HEADERS})
 
 set_target_properties(breezedecoration PROPERTIES
-    OUTPUT_NAME org.kde.breeze
+    OUTPUT_NAME org.kde.beskin
 )
 
 target_link_libraries(breezedecoration
@@ -40,4 +40,3 @@ install(TARGETS breezedecoration DESTINATION ${KDE_INSTALL_PLUGINDIR}/${KDECORAT
 install(FILES breezesettingsdata.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR} RENAME breeze-decoration.kcfg)
 
 add_subdirectory(config)
-

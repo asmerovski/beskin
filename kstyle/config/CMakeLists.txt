@@ -8,13 +8,13 @@ kconfig_add_kcfg_files(kstyle_breeze_config_PART_SRCS ../breezestyleconfigdata.k
 set(kstyle_breeze_config_PART_FORMS ui/breezestyleconfig.ui)
 ki18n_wrap_ui(kstyle_breeze_config_PART_FORMS_HEADERS ${kstyle_breeze_config_PART_FORMS})
 
-kcoreaddons_add_plugin(breezestyleconfig SOURCES
+kcoreaddons_add_plugin(beskinstyleconfig SOURCES
     ${kstyle_breeze_config_PART_SRCS}
     ${kstyle_breeze_config_PART_FORMS_HEADERS}
     INSTALL_NAMESPACE "kstyle_config"
 )
 
-target_link_libraries(breezestyleconfig
+target_link_libraries(beskinstyleconfig
     PUBLIC
         Qt6::Core
         Qt6::Gui
@@ -22,13 +22,13 @@ target_link_libraries(breezestyleconfig
 )
 
 if(HAVE_QTDBUS)
-    target_link_libraries(breezestyleconfig
+    target_link_libraries(beskinstyleconfig
         PUBLIC
             Qt6::DBus
     )
 endif()
 
-target_link_libraries(breezestyleconfig
+target_link_libraries(beskinstyleconfig
     PUBLIC
         KF6::CoreAddons
         KF6::ConfigCore
@@ -36,13 +36,11 @@ target_link_libraries(breezestyleconfig
         KF6::I18n
 )
 if(QT_MAJOR_VERSION STREQUAL "6")
-    target_link_libraries(breezestyleconfig
+    target_link_libraries(beskinstyleconfig
         PUBLIC
     KF6::KCMUtils
 )
 endif()
-kcmutils_generate_desktop_file(breezestyleconfig)
-
 set(breeze_settings_SOURCES main.cpp)
 add_executable(breeze-settings ${breeze_settings_SOURCES} )
 target_link_libraries(breeze-settings Qt6::Core Qt6::Gui Qt6::Widgets )
@@ -61,8 +59,8 @@ ecm_install_icons(ICONS sc-apps-breeze-settings.svgz
 # now.
 # TODO: Drop this when KF6_MIN_VERSION >= 6.27.0
 if(KF6KCMUtils_VERSION VERSION_GREATER_EQUAL "6.27.0")
-    add_test(NAME breezestyleconfig_smoketest COMMAND kcmshell6 -style Breeze --smoke-test kstyle_config/breezestyleconfig)
-    set_tests_properties(breezestyleconfig_smoketest PROPERTIES
+    add_test(NAME beskinstyleconfig_smoketest COMMAND kcmshell6 -style Beskin --smoke-test kstyle_config/beskinstyleconfig)
+    set_tests_properties(beskinstyleconfig_smoketest PROPERTIES
         ENVIRONMENT_MODIFICATION QT_PLUGIN_PATH=path_list_prepend:${CMAKE_BINARY_DIR}/bin
     )
 endif()
